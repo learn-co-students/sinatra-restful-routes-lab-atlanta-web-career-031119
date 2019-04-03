@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Recipe App" do
   let(:recipe_name) { "Bomb.com Mac and Cheese" }
   let(:recipe_ingredients) { "milk, butter, cheese, elbow pasta" }
-  let(:recipe_cook_time) { "20 minutes" }
+  let(:recipe_cook_time) { "20" }
 
   before do
     @recipe1 = Recipe.create(:name => recipe_name, :ingredients => recipe_ingredients, :cook_time => recipe_cook_time)
@@ -26,8 +26,8 @@ describe "Recipe App" do
     end
 
     it "contains links to each recipe's show page" do
-      all_link_hrefs = page.all(:css, "a[href]").map do |element| 
-        element[:href] 
+      all_link_hrefs = page.all(:css, "a[href]").map do |element|
+        element[:href]
       end
       expect(all_link_hrefs).to include("/recipes/#{@recipe1.id}")
       expect(all_link_hrefs).to include("/recipes/#{@recipe2.id}")
@@ -35,7 +35,7 @@ describe "Recipe App" do
 
   end
 
-    
+
   describe "show page '/recipes/:id'" do
     before do
       visit "/recipes/#{@recipe1.id}"
@@ -106,19 +106,19 @@ describe "Recipe App" do
 
       fill_in :name, :with => "Enchiladas con Salsa Verde"
       fill_in :ingredients, :with => "Tortillas, Queso Blanco, Tomatillos, Onion, Garlic, Black beans, Cilantro"
-      fill_in :cook_time, :with => "20 minutes"
+      fill_in :cook_time, :with => 20
 
       page.find(:css, "[type=submit]").click
 
       expect(page).to have_content("Enchiladas con Salsa Verde")
       expect(page).to have_content("Tortillas, Queso Blanco, Tomatillos, Onion, Garlic, Black beans, Cilantro")
-      expect(page).to have_content("20 minutes")
+      expect(page).to have_content(20)
 
     end
   end
 
-  describe "creating a new recipe" do 
-    before do 
+  describe "creating a new recipe" do
+    before do
       params = {
         "name" => "pumpkin pie",
         "ingredients" => "pumpkin, flour, butter, sugar",
@@ -133,7 +133,7 @@ describe "Recipe App" do
       expect(Recipe.last.name).to eq("pumpkin pie")
     end
 
-    it "redirects to the recipe show page" do 
+    it "redirects to the recipe show page" do
       expect(last_request.url).to include("/recipes/#{Recipe.last.id}")
     end
   end
@@ -141,16 +141,16 @@ describe "Recipe App" do
   describe "updating a recipe" do
     before do
       @cookie = Recipe.create(
-        name:   "Chocolate Chip Cookies", 
-        ingredients:  "chocolate chips, flour, sugar, butter", 
-        cook_time:  "30 minutes", 
+        name:   "Chocolate Chip Cookies",
+        ingredients:  "chocolate chips, flour, sugar, butter",
+        cook_time:  "30 minutes",
       )
 
       visit "/recipes/#{@cookie.id}/edit"
 
       fill_in :name, :with => "Double chocolate chip cookies"
       fill_in :ingredients, :with => "chocolate chips, flour, sugar, butter, cocoa powder"
-      fill_in :cook_time, :with => "30 minutes"
+      fill_in :cook_time, :with => 30
 
       page.find(:css, "[type=submit]").click
     end
@@ -158,7 +158,7 @@ describe "Recipe App" do
     it "updates the recipe" do
       expect(page).to have_content("Double chocolate chip cookies")
       expect(page).to have_content("chocolate chips, flour, sugar, butter, cocoa powder")
-      expect(page).to have_content("30 minutes")
+      expect(page).to have_content(30)
     end
 
     it "redirects to the recipe show page" do
@@ -171,9 +171,9 @@ describe "Recipe App" do
 
     before do
       @cookie = Recipe.create(
-        name:   "Chocolate Chip Cookies", 
-        ingredients:  "chocolate chips, flour, sugar, butter", 
-        cook_time:  "30 minutes", 
+        name:   "Chocolate Chip Cookies",
+        ingredients:  "chocolate chips, flour, sugar, butter",
+        cook_time:  "30 minutes",
       )
       visit  "/recipes/#{@cookie.id}"
 
@@ -185,5 +185,5 @@ describe "Recipe App" do
     end
 
   end
-  
+
 end
