@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+  </head>
+  <body>
+    <h1><u><b> Current Name: <%= @recipe.name %> </u></b></h1>
+    <br>
+    <h2> Current Ingredients: </h2>
+    <br>
+    <p> <%= @recipe.ingredients %> </p>
+    <br>
+    <h2> Current Cook Time: <%= @recipe.cook_time %> </h2>
+    <br>
+    <br>
+    <br>
+    <h1> Edit existing recipe. </h1>
+    <form method="POST" action="/recipes/<%= @recipe.id %>">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
+      <p> Recipe's New Name: <input type='text' name='name'></p>
+      <br>
+      <p>Put in the new ingredients for this recipe:</p>
+      <textarea placeholder="Enter ingredients here..." name="ingredients" cols=80 rows=6 ></textarea>
+      <br>
+      <p> New Cook Time: <input type="text" name="cook_time" /> </p>
+      <br>
+      <button id='submit' type="submit" value="Submit">Submit</button>
+    </form>
+    <br>
+    <br>
+    <a href='/recipes'>Click here to go to the recipe list.</a>
+    <br>
+    <a href='/recipes/new'>Click here to add a new recipe!</a>
+  </body>
+</html>

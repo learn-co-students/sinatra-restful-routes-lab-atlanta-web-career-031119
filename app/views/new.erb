@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+  </head>
+  <body>
+    <h1> New Recipe!</h1>
+    <form method="POST" action="/recipes">
+    <p> Recipe's Name: <input type='text' name='name'></p>
+    <br>
+    <p>Put in the ingredients for this recipe:</p>
+    <textarea placeholder="Enter ingredients here..." name="ingredients" cols=80 rows=6 ></textarea>
+    <br>
+    <p> Recipe's Cook Time: <input type='text' name='cook_time'></p>
+    <br>
+    <button id='submit' type="submit" value="Submit">Submit</button>
+    </form>
+  </body>
+</html>
