@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> - Recipes - </title>
+    </head>
+    <body>
+        <h1><u><b> <%= @recipe.name %> </u></b></h1>
+        <br>
+        <h2> Ingredients: </h2>
+        <br>
+        <p> <%= @recipe.ingredients %> </p>
+        <br>
+        <p> Cook Time: <%= @recipe.cook_time %> </p>
+        <br>
+        <a href='/recipes/<%= @recipe.id %>/edit'>Click here to edit this recipe.<a/>
+        <br>
+        <a href='/recipes'>Click here to go to the recipe list.</a>
+        <br>
+        <a href='/recipes/new'>Click here to add a new recipe!</a>
+        <br>
+        <br>
+        <br>
+        <form method="post" action="/recipes/<%= @recipe.id %>">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="delete">
+        </form>
+    </body>
+</html>
